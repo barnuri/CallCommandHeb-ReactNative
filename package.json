@@ -2,7 +2,6 @@
     "name": "call-command-heb",
     "version": "0.0.1",
     "private": true,
-    "bin": "",
     "scripts": {
         "postinstall": "copyfiles --flat ./fixImmediatePhoneCall/build.gradle ./node_modules/react-native-immediate-phone-call/android",
         "android": "react-native run-android",

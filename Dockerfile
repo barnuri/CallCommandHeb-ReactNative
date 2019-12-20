@@ -5,6 +5,7 @@ RUN yarn
 
 COPY . .
 RUN chmod +x android/gradlew
+RUN yarn postinstall
 RUN yarn build
-RUN chmod +x appcenter-login.sh
+RUN chmod +x appcenter-login
 RUN yarn appcenter:upload
