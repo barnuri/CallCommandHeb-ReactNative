@@ -35,4 +35,4 @@ buck-out/
 *.jsbundle
 /ios/Pods/
 appcenter-config.json
-
+appcenter-login*

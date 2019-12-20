@@ -2,6 +2,7 @@
     "name": "call-command-heb",
     "version": "0.0.1",
     "private": true,
+    "bin": "",
     "scripts": {
         "postinstall": "copyfiles --flat ./fixImmediatePhoneCall/build.gradle ./node_modules/react-native-immediate-phone-call/android",
         "android": "react-native run-android",
@@ -9,9 +10,9 @@
         "start": "react-native run-android",
         "test": "jest",
         "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-        "publish:docker": "docker build -t hub-agent-app .",
         "build": "yarn jetify && cd android && ./gradlew assembleRelease",
-        "appcenter:upload": "appcenter apps set-current barnuri/call-command-heb-1 && appcenter distribute release -f android/app/build/outputs/apk/release/app-release.apk -g Collaborators "
+        "appcenter:upload": "./appcenter-login && appcenter apps set-current barnuri/call-command-heb-1 && appcenter distribute release -f android/app/build/outputs/apk/release/app-release.apk -g Collaborators ",
+        "publish:docker": "docker build -t call-command-heb ."
     },
     "dependencies": {
         "appcenter": "2.6.1",
