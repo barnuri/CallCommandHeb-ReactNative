@@ -34,5 +34,5 @@ buck-out/
 */fastlane/screenshots
 *.jsbundle
 /ios/Pods/
-appcenter-config.json
+Dockerfile*
 

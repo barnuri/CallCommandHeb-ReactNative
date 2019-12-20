@@ -3,13 +3,20 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
+        "postinstall": "copyfiles --flat ./fixImmediatePhoneCall/build.gradle ./node_modules/react-native-immediate-phone-call/android",
         "android": "react-native run-android",
         "ios": "react-native run-ios",
         "start": "react-native run-android",
         "test": "jest",
-        "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+        "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+        "publish:docker": "docker build -t hub-agent-app .",
+        "build": "yarn jetify && cd android && ./gradlew assembleRelease",
+        "appcenter:upload": "appcenter apps set-current barnuri/call-command-heb-1 && appcenter distribute release -f android/app/build/outputs/apk/release/app-release.apk -g Collaborators "
     },
     "dependencies": {
+        "appcenter": "2.6.1",
+        "appcenter-analytics": "2.6.1",
+        "appcenter-crashes": "2.6.1",
         "react": "16.9.0",
         "react-native": "0.61.5",
         "react-native-contacts": "^5.0.6",
@@ -24,7 +31,9 @@
         "@types/react-native": "^0.60.22",
         "@types/react-test-renderer": "16.9.0",
         "babel-jest": "^24.9.0",
+        "copyfiles": "^2.1.1",
         "jest": "^24.9.0",
+        "jetifier": "^1.6.5",
         "metro-react-native-babel-preset": "^0.56.0",
         "prettier": "^1.19.1",
         "react-test-renderer": "16.9.0",
