@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView, ScrollView, StatusBar, PermissionsAndroid } from 'react-native';
 import Voice from './components/voice';
+import getAllPermissions from './helpers/getAllPermissions';
 
 const App = () => {
     useEffect(() => {
-        PermissionsAndroid.requestMultiple([
-            PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-            PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-            PermissionsAndroid.PERMISSIONS.CALL_PHONE,
-        ]);
+        getAllPermissions();
     }, []);
 
     return (
