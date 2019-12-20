@@ -39,7 +39,6 @@ const Voice = () => {
     };
 
     useEffect(() => {
-        console.log(contacts.filter(x => x.familyName.indexOf('ציונה') >= 0 && x.givenName == 'אבי בן דוד עיתון'));
         if (foundPerson) {
             console.log('all ready found');
             return;
@@ -55,7 +54,6 @@ const Voice = () => {
             console.log('no callReq');
             return;
         }
-        console.log(callReq);
         const permsWithPhone = contacts.map(x => ({
             perms: permStrJoin([x.familyName, x.givenName, x.prefix, x.middleName, x.suffix]),
             contact: x,
@@ -70,16 +68,13 @@ const Voice = () => {
             return;
         }
         setFoundPerson(matchContacts[0].fullDisplayName);
-        console.log(matchContacts[0]);
 
         const phones = matchContacts[0].phoneNumbers.filter(x => x.number.indexOf('05') >= 0).map(x => x.number);
         const telphones = matchContacts[0].phoneNumbers.filter(x => x.number.indexOf('05') < 0).map(x => x.number);
 
-        console.log('found', phones, telphones);
-
         const phonesMatchs = [...phones, ...telphones];
         const callTo = phonesMatchs[0];
-        console.log(callTo);
+        setFoundPerson(matchContacts[0].fullDisplayName + ' - ' + callTo);
 
         call.immediatePhoneCall(callTo);
     }, [results, partialResults]);
