@@ -30,6 +30,7 @@
         "@types/jest": "^24.0.18",
         "@types/react-native": "^0.60.22",
         "@types/react-test-renderer": "16.9.0",
+        "appcenter-cli": "^2.3.3",
         "babel-jest": "^24.9.0",
         "copyfiles": "^2.1.1",
         "jest": "^24.9.0",
