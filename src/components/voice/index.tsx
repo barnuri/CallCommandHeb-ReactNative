@@ -37,6 +37,12 @@ const Voice = () => {
         }
         setAppState(nextAppState);
     };
+    const destroyVoiceListener = async () => {
+        await VoiceHelper.cancel().catch(() => {});
+        await VoiceHelper.stop().catch(() => {});
+        await VoiceHelper.destroy().catch(() => {});
+        await VoiceHelper.removeAllListeners().catch(() => {});
+    };
 
     useEffect(() => {
         if (foundPerson) {
@@ -76,6 +82,7 @@ const Voice = () => {
         const callTo = phonesMatchs[0];
         setFoundPerson(matchContacts[0].fullDisplayName + ' - ' + callTo);
 
+        destroyVoiceListener();
         call.immediatePhoneCall(callTo);
     }, [results, partialResults]);
 
@@ -90,6 +97,7 @@ const Voice = () => {
                 await VoiceHelper.start('he-IL');
             } catch (e) {
                 console.error(e);
+                await destroyVoiceListener();
             }
         });
     return (
