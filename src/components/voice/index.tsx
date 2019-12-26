@@ -42,6 +42,8 @@ const Voice = () => {
         await VoiceHelper.stop().catch(() => {});
         await VoiceHelper.destroy().catch(() => {});
         await VoiceHelper.removeAllListeners().catch(() => {});
+        setPartialResults([]);
+        setResults([]);
     };
 
     useEffect(() => {
@@ -82,8 +84,8 @@ const Voice = () => {
         const callTo = phonesMatchs[0];
         setFoundPerson(matchContacts[0].fullDisplayName + ' - ' + callTo);
 
-        destroyVoiceListener();
         call.immediatePhoneCall(callTo);
+        destroyVoiceListener();
     }, [results, partialResults]);
 
     const startRecognizing = async () =>
